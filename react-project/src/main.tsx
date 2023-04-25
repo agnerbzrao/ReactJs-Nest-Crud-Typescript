@@ -4,12 +4,12 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from 'react-router-dom';
-import Home from './components/Home'
+import FileToUpload from './components/file-upload'
 
 const router = createBrowserRouter([
   {
     path: '/upload',
-    element: <Home />,
+    element: <FileToUpload />,
   }
 ]);
 
