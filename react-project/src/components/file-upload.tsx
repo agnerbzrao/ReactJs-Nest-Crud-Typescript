@@ -1,8 +1,11 @@
-import { Container, Input, Button} from './styles';
+import { Container, Input, Button } from './styles'
 import { ChangeEvent, useState } from 'react'
 
 function FileToUpload() {
   const [file, setFile] = useState<File>()
+  const [buttonBlock, setButtonBlock] = useState<boolean>(false)
+  const [isUpload, setIsUpload] = useState<boolean>(false)
+  const [messageUpload, setMessageUpload] = useState<string>('')
 
   const handleFileChanged = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
@@ -16,30 +19,42 @@ function FileToUpload() {
     }
 
     try {
+      setButtonBlock(true)
       const response = await fetch('https://httpbin.org/post', {
         method: 'POST',
         body: file,
-        // 👇 Set headers manually for single file upload
         headers: {
           'content-type': file.type,
-          'content-length': `${file.size}`, // 👈 Headers need to be a string
+          'content-length': `${file.size}`,
         },
       })
       console.log(await response.json())
+      setMessageUpload('Upload do arquivo feito com sucesso')
     } catch (error) {
       console.error(error)
+      setMessageUpload('Erro ao fazer o upload do arquivo')
     }
+    setButtonBlock(false)
+    setIsUpload(true)
   }
 
   return (
     <Container>
-      <h1>Escolha o arquivo para fazer o upload</h1>
-      <Input>
-        <input type="file" onChange={handleFileChanged} />
-      </Input> 
-      <Button>
-        <button onClick={handleUploadClicked}>Upload</button> 
-      </Button>
+      {isUpload ? (
+        <h2>{messageUpload}</h2>
+      ) : (
+        <>
+          <h1>Escolha o arquivo para fazer o upload</h1>
+          <Input>
+            <input type="file" onChange={handleFileChanged} />
+          </Input>
+          <Button>
+            <button onClick={handleUploadClicked} disabled={buttonBlock}>
+              {buttonBlock ? 'Uploading' : 'Upload'}
+            </button>
+          </Button>
+        </>
+      )}
     </Container>
   )
 }
