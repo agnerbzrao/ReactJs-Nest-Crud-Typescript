@@ -20,13 +20,13 @@ function FileToUpload() {
 
     try {
       setButtonBlock(true)
-      const response = await fetch('https://httpbin.org/post', {
-        method: 'POST',
-        body: file,
-        headers: {
-          'content-type': file.type,
-          'content-length': `${file.size}`,
-        },
+      const response = await fetch('http://localhost:3001', {
+        method: 'GET',
+        // body: file,
+        // headers: {
+        //   'content-type': file.type,
+        //   'content-length': `${file.size}`,
+        // },
       })
       console.log(await response.json())
       setMessageUpload('Upload do arquivo feito com sucesso')
