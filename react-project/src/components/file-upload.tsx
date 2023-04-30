@@ -1,5 +1,6 @@
 import { Container, Input, Button } from './styles'
 import { ChangeEvent, useState } from 'react'
+import axios from "axios";
 
 function FileToUpload() {
   const [file, setFile] = useState<File>()
@@ -20,15 +21,20 @@ function FileToUpload() {
 
     try {
       setButtonBlock(true)
-      const response = await fetch('http://localhost:3001', {
-        method: 'GET',
-        // body: file,
-        // headers: {
-        //   'content-type': file.type,
-        //   'content-length': `${file.size}`,
-        // },
-      })
-      console.log(await response.json())
+      const formData = new FormData();
+      formData.append('file', file)
+      const response = await axios({
+          url:"http://localhost:3001/",
+          method:"post",
+          headers:{
+            'content-type': file.type,
+            'content-length': `${file.size}`,
+          },
+          data:formData
+      }).then(r => r);      
+
+      console.log(file);
+      console.log(await response)
       setMessageUpload('Upload do arquivo feito com sucesso')
     } catch (error) {
       console.error(error)
