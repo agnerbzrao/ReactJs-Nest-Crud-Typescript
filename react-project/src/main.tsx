@@ -4,12 +4,18 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from 'react-router-dom';
-import FileToUpload from './components/file-upload'
+import FileToUpload from './components/upload/file-upload'
+import NavBar from './components/nav/nav-bar';
+
 
 const router = createBrowserRouter([
   {
     path: '/upload',
     element: <FileToUpload />,
+  },
+  {
+    path: '/',
+    element: <NavBar />,
   }
 ]);
 
