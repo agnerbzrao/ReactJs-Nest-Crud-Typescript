@@ -5,7 +5,7 @@ import {
   RouterProvider,
 } from 'react-router-dom';
 import FileToUpload from './components/upload/file-upload'
-import NavBar from './components/nav/nav-bar';
+import Transactions from './components/transaction/transactions';
 
 
 const router = createBrowserRouter([
@@ -15,7 +15,7 @@ const router = createBrowserRouter([
   },
   {
     path: '/',
-    element: <NavBar />,
+    element: <Transactions />,
   }
 ]);
 

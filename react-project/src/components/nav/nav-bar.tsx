@@ -1,5 +1,5 @@
-import { Link, NavLink } from 'react-router-dom';
-import './styles.css';
+import {  NavLink } from 'react-router-dom';
+import './nav.css';
 function NavBar() {
   return (
     <header>
@@ -8,7 +8,7 @@ function NavBar() {
             <NavLink className={(navData) => navData.isActive ? "active" : "" }to="/">Home</NavLink>
           </li>
           <li>
-            <Link to="/upload">Upload</Link>
+            <NavLink className={(navData) => navData.isActive ? "active" : "" } to="/upload">Upload</NavLink>
           </li>
         </ul>
     </header>    
