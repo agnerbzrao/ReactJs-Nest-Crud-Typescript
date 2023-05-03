@@ -45,13 +45,16 @@ input {
   border-radius: 5px;
   margin: 0 0 0px 6px;
 }
+
+.pagination-div{
+    margin: 20px 0 0 0;
+}
 select{
-    width: 13%;
+    width: 17%;
     height: 38px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    padding-left: 5px;
-    padding: 10px;
+    padding: 1px 0 1px 5px;
     font-size: 15px;
     font-family: 'Open Sans', sans-serif;
     color: #555;
@@ -71,3 +74,13 @@ select>option{
     padding: 15px;
     border: 1px solid rgb(41, 18, 18);
 }
+.input-filter {
+    width: 20%;
+    border: 0;
+    outline: 0;
+    box-shadow: 0 0 0 1px #666;
+    padding: 2px;
+    border-radius: 5px;
+    margin: 0 0 15px 6px;
+    height: 29px;
+  }

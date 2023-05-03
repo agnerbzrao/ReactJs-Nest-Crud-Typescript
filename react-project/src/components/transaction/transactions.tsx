@@ -5,6 +5,7 @@ import { ColumnDef } from '@tanstack/react-table'
 import './transactions.css'
 import NavBar from '../nav/nav-bar'
 import Table from '../table/table'
+import { filterFns } from '../table/filter'
 
 function Transactions() {
   //   // data state to store the TV Maze API data. Its initial value is an empty array
@@ -16,7 +17,7 @@ function Transactions() {
   //       const result = await axios("https://api.tvmaze.com/search/shows?q=snow");
   //       setData(result.data);
   //     })();
-  //   }, []);
+  //   }, []); 
   type Item = {
     id: number
     type_sale: string
@@ -25,16 +26,30 @@ function Transactions() {
     value_sale: string
     seller: string
   }
-  const convertIsoBrazilianDate = (dateIso): string => {
-    const getDate = dateIso.slice(0, 10).split('-');
-    const getHours = dateIso.slice(11, 19).split(':');
-    return getDate[2] +'/'+ getDate[1] +'/'+ getDate[0] + ' '+ getHours[0] + ':'+ getHours[1] + ':'+ getHours[2];
+  const convertIsoDateToBrazilianDate = (dateIso): string => {
+    const getDate = dateIso.slice(0, 10).split('-')
+    const getHours = dateIso.slice(11, 19).split(':')
+    return (
+      getDate[2] +
+      '/' +
+      getDate[1] +
+      '/' +
+      getDate[0] +
+      ' ' +
+      getHours[0] +
+      ':' +
+      getHours[1] +
+      ':' +
+      getHours[2]
+    )
   }
 
   const convertCentavosReal = (centavos): Number => {
-    const numberDivided= Number(centavos)/100;
-    return numberDivided.toLocaleString("pt-BR", {style: 'currency', currency: 'BRL' });
-
+    const numberDivided = Number(centavos) / 100
+    return numberDivided.toLocaleString('pt-BR', {
+      style: 'currency',
+      currency: 'BRL',
+    })
   }
   const cols = useMemo<ColumnDef<Item>[]>(
     () => [
@@ -45,7 +60,7 @@ function Transactions() {
       },
       {
         header: 'Data de venda',
-        cell: (row) => convertIsoBrazilianDate(row.renderValue()),
+        cell: (row) => convertIsoDateToBrazilianDate(row.renderValue()),
         accessorKey: 'date_sale',
       },
       {
@@ -150,11 +165,20 @@ function Transactions() {
       },
     ]
   }
+
+  // most of table work acceptably well with this function
+
   return (
     <>
       <NavBar />
       <div className="transactions">
-        <Table data={dummyData()} columns={cols} />
+      <h1>Lista de todas as transações</h1>
+        <Table
+          data={dummyData()}
+          columns={cols}
+          showGlobalFilter
+          filterFn={filterFns.contains}
+        />
       </div>
     </>
   )
