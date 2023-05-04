@@ -16,11 +16,15 @@ services:
     build: ./react-project
     container_name: client
     ports:
-      - '3000:3000'
+      - $REACTJS_APP_LOCAL_PORT:$REACTJS_APP_DOCKER_PORT
     volumes:
       - ./react-project:/app
     stdin_open: true
     tty: true
+    environment:
+      - REACT_PORT=$REACTJS_APP_LOCAL_PORT    
+      - NESTJS_PORT=$NESTJS_PROJECT_LOCAL_PORT    
+      - API_URL=$API_URL_LOCAL    
 
   mysql-db:
     container_name:  mysql-db

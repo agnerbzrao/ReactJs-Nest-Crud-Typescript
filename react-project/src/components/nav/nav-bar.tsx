@@ -9,6 +9,9 @@ function NavBar() {
           </li>
           <li>
             <NavLink className={(navData) => navData.isActive ? "active" : "" } to="/upload">Upload</NavLink>
+          </li>          
+          <li>
+            <NavLink className={(navData) => navData.isActive ? "active" : "" } to="/balance-productor">Saldo Produtor</NavLink>
           </li>
         </ul>
     </header>    

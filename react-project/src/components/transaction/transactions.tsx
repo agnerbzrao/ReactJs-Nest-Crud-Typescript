@@ -7,6 +7,7 @@ import NavBar from '../nav/nav-bar'
 import Table from '../table/table'
 import { filterFns } from '../table/filter'
 import { TransactionsEntity } from '../../entity/transactions-entity'
+import { Config } from '../../config'
 
 function Transactions() {
     // data state to store the TV Maze API data. Its initial value is an empty array
@@ -15,8 +16,7 @@ function Transactions() {
     // Using useEffect to call the API once mounted and set the data
     useEffect(() => {
       (async () => {
-        const result = await axios("http://localhost:3001");
-        console.log(result);
+        const result = await axios(Config.API_URL);
         setData(result.data.transactions);
       })();
 
@@ -78,90 +78,6 @@ function Transactions() {
     ],
     []
   )
-  // const dummyData = (): Item[] => {
-  //   return [
-  //     {
-  //       id: 1,
-  //       type_sale: '1',
-  //       date_sale: '2022-01-15T19:20:30-03:00',
-  //       product: 'CURSODEBEM-ESTAR',
-  //       value_sale: '0000012750',
-  //       seller: 'JOSE CARLOS',
-  //     },
-  //     {
-  //       id: 2,
-  //       type_sale: '1',
-  //       date_sale: '2021-12-03T11:46:02-03:00',
-  //       product: 'DOMINANDOINVESTIMENTOS',
-  //       value_sale: '0000050000',
-  //       seller: 'MARIA CANDIDA',
-  //     },
-  //     {
-  //       id: 3,
-  //       type_sale: '2',
-  //       date_sale: '2022-01-16T14:13:54-03:00',
-  //       product: 'CURSODEBEM-ESTAR',
-  //       value_sale: '0000012750',
-  //       seller: 'THIAGO OLIVEIRA',
-  //     },
-  //     {
-  //       id: 4,
-  //       type_sale: '4',
-  //       date_sale: '2022-01-16T14:13:54-03:00',
-  //       product: 'CURSODEBEM-ESTAR',
-  //       value_sale: '0000004500',
-  //       seller: 'THIAGO OLIVEIRA',
-  //     },
-  //     {
-  //       id: 5,
-  //       type_sale: '3',
-  //       date_sale: '2022-01-16T14:13:54-03:00',
-  //       product: 'CURSODEBEM-ESTAR',
-  //       value_sale: '0000004500',
-  //       seller: 'JOSE CARLOS',
-  //     },
-  //     {
-  //       id: 6,
-  //       type_sale: '1',
-  //       date_sale: '2022-01-22T08:59:13-03:00',
-  //       product: 'DOMINANDOINVESTIMENTOS',
-  //       value_sale: '0000050000',
-  //       seller: 'MARIA CANDIDA',
-  //     },
-  //     {
-  //       id: 7,
-  //       type_sale: '1',
-  //       date_sale: '2022-02-01T23:35:43-03:00',
-  //       product: 'DESENVOLVEDORFULLSTACK',
-  //       value_sale: '0000155000',
-  //       seller: 'ELIANA NOGUEIRA',
-  //     },
-  //     {
-  //       id: 8,
-  //       type_sale: '2',
-  //       date_sale: '2022-02-03T17:23:37-03:00',
-  //       product: 'DESENVOLVEDORFULLSTACK',
-  //       value_sale: '0000155000',
-  //       seller: 'CARLOS BATISTA',
-  //     },
-  //     {
-  //       id: 9,
-  //       type_sale: '2',
-  //       date_sale: '2022-02-03T20:51:59-03:00',
-  //       product: 'DESENVOLVEDORFULLSTACK',
-  //       value_sale: '0000155000',
-  //       seller: 'CAROLINA MACHADO',
-  //     },
-  //     {
-  //       id: 10,
-  //       type_sale: '2',
-  //       date_sale: '2022-02-04T07:42:12-03:00',
-  //       product: 'DESENVOLVEDORFULLSTACK',
-  //       value_sale: '0000155000',
-  //       seller: 'CELSO DE MELO',
-  //     },
-  //   ]
-  // }
 
   return (
     <>

@@ -2,6 +2,7 @@ import { Container, Input, Button } from './styles'
 import { ChangeEvent, useState } from 'react'
 import axios from 'axios'
 import NavBar from '../../components/nav/nav-bar'
+import { Config } from '../../config'
 
 function FileToUpload() {
   const [file, setFile] = useState<File>()
@@ -25,7 +26,7 @@ function FileToUpload() {
       const formData = new FormData()
       formData.append('file', file)
       const response = await axios({
-        url: 'http://localhost:3001/',
+        url: Config.API_URL,
         method: 'post',
         headers: {
           'content-type': file.type,

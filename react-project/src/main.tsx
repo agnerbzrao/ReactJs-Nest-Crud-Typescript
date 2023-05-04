@@ -6,16 +6,21 @@ import {
 } from 'react-router-dom';
 import FileToUpload from './components/upload/file-upload'
 import Transactions from './components/transaction/transactions';
+import ProductorFinalBalance from './components/productor-final-balance/productor-final-balance';
 
 
 const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <Transactions />,
+  },
   {
     path: '/upload',
     element: <FileToUpload />,
   },
   {
-    path: '/',
-    element: <Transactions />,
+    path: '/balance-productor',
+    element: <ProductorFinalBalance />,
   }
 ]);
 
