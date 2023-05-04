@@ -1,6 +1,0 @@
-{
-  "dependencies": {
-    "@tanstack/match-sorter-utils": "^8.8.4",
-    "@tanstack/react-table": "^8.9.0"
-  }
-}

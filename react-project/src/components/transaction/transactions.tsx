@@ -6,26 +6,23 @@ import './transactions.css'
 import NavBar from '../nav/nav-bar'
 import Table from '../table/table'
 import { filterFns } from '../table/filter'
+import { TransactionsEntity } from '../../entity/transactions-entity'
 
 function Transactions() {
-  //   // data state to store the TV Maze API data. Its initial value is an empty array
-  //   const [data, setData] = useState([]);
+    // data state to store the TV Maze API data. Its initial value is an empty array
+    const [data, setData] = useState([]);
 
-  //   // Using useEffect to call the API once mounted and set the data
-  //   useEffect(() => {
-  //     (async () => {
-  //       const result = await axios("https://api.tvmaze.com/search/shows?q=snow");
-  //       setData(result.data);
-  //     })();
-  //   }, []); 
-  type Item = {
-    id: number
-    type_sale: string
-    date_sale: string
-    product: string
-    value_sale: string
-    seller: string
-  }
+    // Using useEffect to call the API once mounted and set the data
+    useEffect(() => {
+      (async () => {
+        const result = await axios("http://localhost:3001");
+        console.log(result);
+        setData(result.data.transactions);
+      })();
+
+
+    }, []);
+
   const convertIsoDateToBrazilianDate = (dateIso): string => {
     const getDate = dateIso.slice(0, 10).split('-')
     const getHours = dateIso.slice(11, 19).split(':')
@@ -51,7 +48,7 @@ function Transactions() {
       currency: 'BRL',
     })
   }
-  const cols = useMemo<ColumnDef<Item>[]>(
+  const cols = useMemo<ColumnDef<TransactionsEntity>[]>(
     () => [
       {
         header: 'Tipo de venda',
@@ -81,104 +78,107 @@ function Transactions() {
     ],
     []
   )
-  const dummyData = (): Item[] => {
-    return [
-      {
-        id: 1,
-        type_sale: '1',
-        date_sale: '2022-01-15T19:20:30-03:00',
-        product: 'CURSODEBEM-ESTAR',
-        value_sale: '0000012750',
-        seller: 'JOSE CARLOS',
-      },
-      {
-        id: 2,
-        type_sale: '1',
-        date_sale: '2021-12-03T11:46:02-03:00',
-        product: 'DOMINANDOINVESTIMENTOS',
-        value_sale: '0000050000',
-        seller: 'MARIA CANDIDA',
-      },
-      {
-        id: 3,
-        type_sale: '2',
-        date_sale: '2022-01-16T14:13:54-03:00',
-        product: 'CURSODEBEM-ESTAR',
-        value_sale: '0000012750',
-        seller: 'THIAGO OLIVEIRA',
-      },
-      {
-        id: 4,
-        type_sale: '4',
-        date_sale: '2022-01-16T14:13:54-03:00',
-        product: 'CURSODEBEM-ESTAR',
-        value_sale: '0000004500',
-        seller: 'THIAGO OLIVEIRA',
-      },
-      {
-        id: 5,
-        type_sale: '3',
-        date_sale: '2022-01-16T14:13:54-03:00',
-        product: 'CURSODEBEM-ESTAR',
-        value_sale: '0000004500',
-        seller: 'JOSE CARLOS',
-      },
-      {
-        id: 6,
-        type_sale: '1',
-        date_sale: '2022-01-22T08:59:13-03:00',
-        product: 'DOMINANDOINVESTIMENTOS',
-        value_sale: '0000050000',
-        seller: 'MARIA CANDIDA',
-      },
-      {
-        id: 7,
-        type_sale: '1',
-        date_sale: '2022-02-01T23:35:43-03:00',
-        product: 'DESENVOLVEDORFULLSTACK',
-        value_sale: '0000155000',
-        seller: 'ELIANA NOGUEIRA',
-      },
-      {
-        id: 8,
-        type_sale: '2',
-        date_sale: '2022-02-03T17:23:37-03:00',
-        product: 'DESENVOLVEDORFULLSTACK',
-        value_sale: '0000155000',
-        seller: 'CARLOS BATISTA',
-      },
-      {
-        id: 9,
-        type_sale: '2',
-        date_sale: '2022-02-03T20:51:59-03:00',
-        product: 'DESENVOLVEDORFULLSTACK',
-        value_sale: '0000155000',
-        seller: 'CAROLINA MACHADO',
-      },
-      {
-        id: 10,
-        type_sale: '2',
-        date_sale: '2022-02-04T07:42:12-03:00',
-        product: 'DESENVOLVEDORFULLSTACK',
-        value_sale: '0000155000',
-        seller: 'CELSO DE MELO',
-      },
-    ]
-  }
-
-  // most of table work acceptably well with this function
+  // const dummyData = (): Item[] => {
+  //   return [
+  //     {
+  //       id: 1,
+  //       type_sale: '1',
+  //       date_sale: '2022-01-15T19:20:30-03:00',
+  //       product: 'CURSODEBEM-ESTAR',
+  //       value_sale: '0000012750',
+  //       seller: 'JOSE CARLOS',
+  //     },
+  //     {
+  //       id: 2,
+  //       type_sale: '1',
+  //       date_sale: '2021-12-03T11:46:02-03:00',
+  //       product: 'DOMINANDOINVESTIMENTOS',
+  //       value_sale: '0000050000',
+  //       seller: 'MARIA CANDIDA',
+  //     },
+  //     {
+  //       id: 3,
+  //       type_sale: '2',
+  //       date_sale: '2022-01-16T14:13:54-03:00',
+  //       product: 'CURSODEBEM-ESTAR',
+  //       value_sale: '0000012750',
+  //       seller: 'THIAGO OLIVEIRA',
+  //     },
+  //     {
+  //       id: 4,
+  //       type_sale: '4',
+  //       date_sale: '2022-01-16T14:13:54-03:00',
+  //       product: 'CURSODEBEM-ESTAR',
+  //       value_sale: '0000004500',
+  //       seller: 'THIAGO OLIVEIRA',
+  //     },
+  //     {
+  //       id: 5,
+  //       type_sale: '3',
+  //       date_sale: '2022-01-16T14:13:54-03:00',
+  //       product: 'CURSODEBEM-ESTAR',
+  //       value_sale: '0000004500',
+  //       seller: 'JOSE CARLOS',
+  //     },
+  //     {
+  //       id: 6,
+  //       type_sale: '1',
+  //       date_sale: '2022-01-22T08:59:13-03:00',
+  //       product: 'DOMINANDOINVESTIMENTOS',
+  //       value_sale: '0000050000',
+  //       seller: 'MARIA CANDIDA',
+  //     },
+  //     {
+  //       id: 7,
+  //       type_sale: '1',
+  //       date_sale: '2022-02-01T23:35:43-03:00',
+  //       product: 'DESENVOLVEDORFULLSTACK',
+  //       value_sale: '0000155000',
+  //       seller: 'ELIANA NOGUEIRA',
+  //     },
+  //     {
+  //       id: 8,
+  //       type_sale: '2',
+  //       date_sale: '2022-02-03T17:23:37-03:00',
+  //       product: 'DESENVOLVEDORFULLSTACK',
+  //       value_sale: '0000155000',
+  //       seller: 'CARLOS BATISTA',
+  //     },
+  //     {
+  //       id: 9,
+  //       type_sale: '2',
+  //       date_sale: '2022-02-03T20:51:59-03:00',
+  //       product: 'DESENVOLVEDORFULLSTACK',
+  //       value_sale: '0000155000',
+  //       seller: 'CAROLINA MACHADO',
+  //     },
+  //     {
+  //       id: 10,
+  //       type_sale: '2',
+  //       date_sale: '2022-02-04T07:42:12-03:00',
+  //       product: 'DESENVOLVEDORFULLSTACK',
+  //       value_sale: '0000155000',
+  //       seller: 'CELSO DE MELO',
+  //     },
+  //   ]
+  // }
 
   return (
     <>
       <NavBar />
       <div className="transactions">
-      <h1>Lista de todas as transações</h1>
-        <Table
-          data={dummyData()}
-          columns={cols}
-          showGlobalFilter
-          filterFn={filterFns.contains}
-        />
+        <h1>Lista de todas as transações</h1>
+
+        {data.length > 0 ? (
+          <Table
+            data={data}
+            columns={cols}
+            showGlobalFilter
+            filterFn={filterFns.contains}
+          />
+        ) : (
+          <h1>Não há dados de transações no momento</h1>
+        )}
       </div>
     </>
   )

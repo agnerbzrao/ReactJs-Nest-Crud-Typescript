@@ -56,8 +56,6 @@ export const DebouncedInput = ({
 }
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-
-
 export const Table = <T extends object>({
   data,
   columns,
@@ -76,13 +74,11 @@ export const Table = <T extends object>({
     getPaginationRowModel: getPaginationRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
     onGlobalFilterChange: setGlobalFilter,
-    globalFilterFn: filterFn, 
+    globalFilterFn: filterFn,
   })
 
   return (
     <>
-    {data.length > 0 ? (
-        <>
       {showGlobalFilter ? (
         <DebouncedInput
           value={globalFilter ?? ''}
@@ -183,8 +179,7 @@ export const Table = <T extends object>({
             </select>
           </div>
         </>
-      ) : null}   
-      </>): <h1>Não há dados de transações no momento</h1>}   
+      ) : null}
     </>
   )
 }
