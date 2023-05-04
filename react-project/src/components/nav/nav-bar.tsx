@@ -13,6 +13,9 @@ function NavBar() {
           <li>
             <NavLink className={(navData) => navData.isActive ? "active" : "" } to="/balance-productor">Saldo Produtor</NavLink>
           </li>
+          <li>
+            <NavLink className={(navData) => navData.isActive ? "active" : "" } to="/balance-affiliate">Saldo Afiliado</NavLink>
+          </li>
         </ul>
     </header>    
   )

@@ -7,6 +7,7 @@ import {
 import FileToUpload from './components/upload/file-upload'
 import Transactions from './components/transaction/transactions';
 import ProductorFinalBalance from './components/productor-final-balance/productor-final-balance';
+import AffiliateFinalBalance from './components/affiliate-final-balance/affiliate-final-balance';
 
 
 const router = createBrowserRouter([
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
   {
     path: '/balance-productor',
     element: <ProductorFinalBalance />,
+  },
+  {
+    path: '/balance-affiliate',
+    element: <AffiliateFinalBalance />,
   }
 ]);
 

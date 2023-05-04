@@ -23,7 +23,7 @@ services:
     tty: true
     environment:
       - REACT_PORT=$REACTJS_APP_LOCAL_PORT    
-      - NESTJS_PORT=$NESTJS_PROJECT_LOCAL_PORT    
+      - API_PORT=$NESTJS_PROJECT_LOCAL_PORT    
       - API_URL=$API_URL_LOCAL    
 
   mysql-db:
