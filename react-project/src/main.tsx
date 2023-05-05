@@ -21,7 +21,7 @@ const router = createBrowserRouter([
   },
   {
     path: '/balance-productor',
-    element: <ProductorFinalBalance />,
+    element: <ProductorFinalBalance/>,
   },
   {
     path: '/balance-affiliate',
