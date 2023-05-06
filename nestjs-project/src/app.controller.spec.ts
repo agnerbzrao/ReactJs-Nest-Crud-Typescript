@@ -26,12 +26,34 @@ describe('AppController', () => {
   it('should be defined the appService', () => {
     expect(appService).toBeDefined();
   });
-  it('should return an mock response of appController', async () => {
+
+  it('should return an mock response of findAll method of appController', async () => {
     const appServiceResponse = jest
       .spyOn(appService, 'findAll')
       .mockImplementation(async () => await Promise.resolve(result));
 
-    expect(appServiceResponse).toBeCalled();
     expect(await appController.fetchAll(mockResponse)).toBe(result);
+    expect(appServiceResponse).toBeCalled();
+  });
+  it('should return an mock response of getProducerFinalBalance method of appController', async () => {
+    const appServiceResponse = jest
+      .spyOn(appService, 'getProducerFinalBalance')
+      .mockImplementation(async () => await Promise.resolve(result));
+
+    expect(await appController.getProducerFinalBalance(mockResponse)).toBe(
+      result,
+    );
+    expect(appServiceResponse).toBeCalled();
+  });
+
+  it('should return an mock response of getAffiliateFinalBalance method of appController', async () => {
+    const appServiceResponse = jest
+      .spyOn(appService, 'getAffiliateFinalBalance')
+      .mockImplementation(async () => await Promise.resolve(result));
+
+    expect(await appController.getAffiliateFinalBalance(mockResponse)).toBe(
+      result,
+    );
+    expect(appServiceResponse).toBeCalled();
   });
 });
