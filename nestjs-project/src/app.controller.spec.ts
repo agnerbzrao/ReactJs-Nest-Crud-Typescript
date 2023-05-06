@@ -9,31 +9,29 @@ describe('AppController', () => {
   let transactionsRepository: Repository<Transactions>;
   let dataSource: DataSource;
 
-  const responseObject = {
-    status: 200,
-    message: 'Hello World!',
+  const result = {
+    transactionsMock: 'transactionsMockResult',
   };
-  const response = {
-    status: jest.fn().mockImplementation().mockReturnValue(200),
-    json: jest.fn().mockImplementation().mockReturnValue(responseObject),
-  };
+  const mockJson = jest.fn().mockImplementation(() => result),
+    mockStatus = jest.fn().mockImplementation(() => ({ json: mockJson })),
+    mockResponse = {
+      status: mockStatus,
+    };
 
   beforeEach(() => {
     appService = new AppService(transactionsRepository, dataSource);
     appController = new AppController(appService);
   });
 
-  it('should be defined', () => {
+  it('should be defined the appService', () => {
     expect(appService).toBeDefined();
   });
-  it('should return an array of cats', async () => {
-    const result = {
-      a: 'a',
-    };
-    jest
+  it('should return an mock response of appController', async () => {
+    const appServiceResponse = jest
       .spyOn(appService, 'findAll')
       .mockImplementation(async () => await Promise.resolve(result));
 
-    const teste = await appController.fetchAll(response);
+    expect(appServiceResponse).toBeCalled();
+    expect(await appController.fetchAll(mockResponse)).toBe(result);
   });
 });
