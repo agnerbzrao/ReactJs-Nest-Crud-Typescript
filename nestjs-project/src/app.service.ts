@@ -34,7 +34,7 @@ export class AppService {
     return this.createMany(transEntityArray);
   }
 
-  async findAll(): Promise<any> {
+  async findAll(): Promise<Transactions[]> {
     return await this.transactionsRepository.find();
   }
 
