@@ -13,7 +13,7 @@ import { FileInterceptor } from '@nestjs/platform-express';
 @Controller()
 export class AppController {
   constructor(private readonly appService: AppService) {}
-  @Post()
+  @Post('upload')
   @UseInterceptors(FileInterceptor('file'))
   async uploadFile(@Res() response, @UploadedFile() file: Express.Multer.File) {
     const transactionsCreated = await this.appService.handleFile(file);

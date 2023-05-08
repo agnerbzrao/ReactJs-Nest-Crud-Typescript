@@ -6,24 +6,18 @@ import NavBar from '../nav/nav-bar'
 import Table from '../table/table'
 import { TransactionsEntity } from '../../entity/transactions-entity'
 import { Config } from '../../config'
+import convertCentavosReal from '../helpers/helper'
 
 function ProductorFinalBalance() {
   const [data, setData] = useState([])
 
   useEffect(() => {
-    ;(async () => {
+    (async () => {
       const result = await axios(Config.API_URL + 'producer-final-balance')
       setData(result.data.transactions)
     })()
   }, [])
 
-  const convertCentavosReal = (centavos): Number => {
-    const numberDivided = Number(centavos) / 100
-    return numberDivided.toLocaleString('pt-BR', {
-      style: 'currency',
-      currency: 'BRL',
-    })
-  }
   const cols = useMemo<ColumnDef<TransactionsEntity>[]>(
     () => [
       {

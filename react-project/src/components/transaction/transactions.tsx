@@ -8,7 +8,7 @@ import Table from '../table/table'
 import { filterFns } from '../table/filter'
 import { TransactionsEntity } from '../../entity/transactions-entity'
 import { Config } from '../../config'
-
+import convertCentavosReal from '../helpers/helper'
 function Transactions() {
     // data state to store the TV Maze API data. Its initial value is an empty array
     const [data, setData] = useState([]);
@@ -23,9 +23,10 @@ function Transactions() {
 
     }, []);
 
-  const convertIsoDateToBrazilianDate = (dateIso): string => {
-    const getDate = dateIso.slice(0, 10).split('-')
-    const getHours = dateIso.slice(11, 19).split(':')
+  const convertIsoDateToBrazilianDate = (dateIso: unknown): string => {
+    const iso:string = String(dateIso);
+    const getDate = iso.slice(0, 10).split('-')
+    const getHours = iso.slice(11, 19).split(':')
     return (
       getDate[2] +
       '/' +
@@ -41,13 +42,6 @@ function Transactions() {
     )
   }
 
-  const convertCentavosReal = (centavos): Number => {
-    const numberDivided = Number(centavos) / 100
-    return numberDivided.toLocaleString('pt-BR', {
-      style: 'currency',
-      currency: 'BRL',
-    })
-  }
   const cols = useMemo<ColumnDef<TransactionsEntity>[]>(
     () => [
       {

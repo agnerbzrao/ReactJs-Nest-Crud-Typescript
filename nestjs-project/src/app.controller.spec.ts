@@ -27,10 +27,10 @@ describe('AppController', () => {
     },
     expressMuterFile = {
       fieldname: 'file',
-      originalname: 'TradeHistory.csv',
+      originalname: 'sales.txt',
       encoding: '7bit',
-      mimetype: 'text/csv',
-      buffer: Buffer.from(__dirname + '/../../TradeHistory.csv', 'utf8'),
+      mimetype: 'text',
+      buffer: Buffer.from('/../../sales.txt', 'utf8'),
       size: 51828,
     } as Express.Multer.File;
 

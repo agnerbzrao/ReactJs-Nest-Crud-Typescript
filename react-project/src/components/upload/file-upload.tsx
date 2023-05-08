@@ -25,8 +25,8 @@ function FileToUpload() {
       setButtonBlock(true)
       const formData = new FormData()
       formData.append('file', file)
-      const response = await axios({
-        url: Config.API_URL,
+      await axios({
+        url: Config.API_URL + 'upload',
         method: 'post',
         headers: {
           'content-type': file.type,
@@ -34,12 +34,8 @@ function FileToUpload() {
         },
         data: formData,
       }).then((r) => r)
-
-      console.log(file)
-      console.log(await response)
       setMessageUpload('Upload do arquivo feito com sucesso')
     } catch (error) {
-      console.error(error)
       setMessageUpload('Erro ao fazer o upload do arquivo')
     }
     setButtonBlock(false)

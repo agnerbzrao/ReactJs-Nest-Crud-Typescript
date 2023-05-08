@@ -4,6 +4,7 @@ import {
   flexRender,
   getPaginationRowModel,
   getFilteredRowModel,
+  FilterFns,
 } from '@tanstack/react-table'
 import { useEffect, useState } from 'react'
 import type { ColumnDef } from '@tanstack/react-table'
@@ -20,7 +21,7 @@ interface ReactTableProps<T extends object> {
   columns: ColumnDef<T>[]
   showNavigation?: boolean
   showGlobalFilter?: boolean
-  filterFn?: FilterFn<T>
+  filterFn?: FilterFns
 }
 export const DebouncedInput = ({
   value: initialValue,
@@ -61,7 +62,6 @@ export const Table = <T extends object>({
   columns,
   showNavigation = true,
   showGlobalFilter = false,
-  filterFn = filterFns.fuzzy,
 }: ReactTableProps<T>) => {
   const [globalFilter, setGlobalFilter] = useState('')
   const table = useReactTable({
@@ -74,7 +74,6 @@ export const Table = <T extends object>({
     getPaginationRowModel: getPaginationRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
     onGlobalFilterChange: setGlobalFilter,
-    globalFilterFn: filterFn,
   })
 
   return (

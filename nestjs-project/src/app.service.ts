@@ -77,8 +77,6 @@ export class AppService {
       });
       await queryRunner.commitTransaction();
     } catch (error) {
-      console.log(error);
-      process.exit(0);
       await queryRunner.rollbackTransaction();
     } finally {
       await queryRunner.release();

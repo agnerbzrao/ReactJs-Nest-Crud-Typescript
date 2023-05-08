@@ -1,16 +1,16 @@
 version: '3.8'
 services:
-  # nginx:
-  #   container_name: server-nginx
-  #   image: nginx
-  #   depends_on:
-  #     - client
-  #   restart: always
-  #   volumes:
-  #     - ./react-project/dist:/usr/share/nginx/html
-  #     - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
-  #   ports:
-  #     - "80:80"
+  nginx:
+    container_name: server-nginx
+    image: nginx
+    depends_on:
+      - client
+    restart: always
+    volumes:
+      - ./react-project/dist:/usr/share/nginx/html
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+    ports:
+      - "80:80"
       
   client:
     build: ./react-project

@@ -7,6 +7,7 @@ import Table from '../table/table'
 import { TransactionsEntity } from '../../entity/transactions-entity'
 import { Config } from '../../config'
 import { filterFns } from '../table/filter'
+import convertCentavosReal from '../helpers/helper'
 
 function AffiliateFinalBalance() {
   const [data, setData] = useState([])
@@ -19,13 +20,6 @@ function AffiliateFinalBalance() {
   }, [])
 
 
-  const convertCentavosReal = (centavos): Number => {
-    const numberDivided = Number(centavos) / 100
-    return numberDivided.toLocaleString('pt-BR', {
-      style: 'currency',
-      currency: 'BRL',
-    })
-  }
   const cols = useMemo<ColumnDef<TransactionsEntity>[]>(
     () => [
       {
