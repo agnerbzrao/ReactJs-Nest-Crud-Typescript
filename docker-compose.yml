@@ -19,6 +19,7 @@ services:
       - $REACTJS_APP_LOCAL_PORT:$REACTJS_APP_DOCKER_PORT
     volumes:
       - ./react-project:/app
+      - /app/node_modules
     stdin_open: true
     tty: true
     environment:
