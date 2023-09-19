@@ -16,6 +16,7 @@ export class AppController {
   @Post('upload')
   @UseInterceptors(FileInterceptor('file'))
   async uploadFile(@Res() response, @UploadedFile() file: Express.Multer.File) {
+    //Teste.
     const transactionsCreated = await this.appService.handleFile(file);
     return response.status(HttpStatus.CREATED).json({
       transactionsCreated,
